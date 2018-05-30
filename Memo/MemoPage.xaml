@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:local="clr-namespace:Memo" 
+             x:Class="Memo.MemoPage">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="追加" 
+                     Clicked="Add_clicked"/>
+    </ContentPage.ToolbarItems>
+    <ListView x:Name="listView" >
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                    <TextCell Text="{Binding Memo}" 
+                              Detail="{Binding InsertDate, StringFormat='{0:yyy/MM/dd hh:mm}'}"/>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+</ContentPage>
