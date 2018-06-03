@@ -2,44 +2,43 @@
 using SQLite;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace Memo.Database
 {
     public class TodoItemDatabase
     {
-        readonly SQLiteAsyncConnection database; 
+        static readonly object wObject = new object();
+        readonly SQLiteConnection wTodoItemDatabase; 
 
-        public TodoItemDatabase(string dbPath)
+        public TodoItemDatabase()
         {
-            database = new SQLiteAsyncConnection(dbPath);
-            database.CreateTableAsync<TodoItem>().Wait();
+            wTodoItemDatabase = DependencyService.Get<IFileHelper>().GetConnection();
+            wTodoItemDatabase.CreateTable<TodoItem>();
         }
 
-        public Task<List<TodoItem>> GetItemsAsync()
+        public IEnumerable<TodoItem> GetItems()
         {
-            return database.Table<TodoItem>().ToListAsync();
-        }
-
-        public Task<TodoItem> GetItemAsync(int id)
-        {
-            return database.Table<TodoItem>().Where(i => i.ID == id).FirstOrDefaultAsync();
-        }
-
-        public Task<int> SaveItemAsync(TodoItem item)
-        {
-            if (item.ID != 0)
+            lock (wObject)
             {
-                return database.UpdateAsync(item);
-            }
-            else
-            {
-                return database.InsertAsync(item);
+                return wTodoItemDatabase.Table<TodoItem>();
             }
         }
 
-        public Task<int> DeleteItemAsync(TodoItem item)
+        public void InsertItem(TodoItem item)
         {
-            return database.DeleteAsync(item);
+            lock(wObject)
+            {
+                wTodoItemDatabase.Insert(item);
+            }
+        }
+
+        public void DeleteItem(TodoItem item)
+        {
+            lock(wObject)
+            {
+                wTodoItemDatabase.Delete(item);
+            }
         }
     }
 }

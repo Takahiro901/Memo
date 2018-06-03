@@ -7,6 +7,8 @@ namespace Memo
 {
     public partial class WritePage : ContentPage
     {
+        readonly TodoItemDatabase todoItemDatabase = new TodoItemDatabase();
+
         public WritePage()
         {
             InitializeComponent();
@@ -20,7 +22,7 @@ namespace Memo
                 Memo = eMemo.Text,
                 InsertDate = DateTime.Now
             };
-            await App.Database.SaveItemAsync(item);
+            todoItemDatabase.InsertItem(item);
             await Navigation.PopAsync();
         }
 
