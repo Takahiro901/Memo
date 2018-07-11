@@ -33,6 +33,14 @@ namespace Memo.Database
             }
         }
 
+        public void UpdateItem(TodoItem item)
+        {
+            lock (wObject)
+            {
+                wTodoItemDatabase.Update(item);
+            }
+        }
+
         public void DeleteItem(TodoItem item)
         {
             lock(wObject)

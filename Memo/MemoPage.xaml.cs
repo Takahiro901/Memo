@@ -19,11 +19,12 @@ namespace Memo
             listView.ItemTapped += async (s, a) =>
             {
                 var wItem = (TodoItem)a.Item;
-                if (await DisplayAlert("削除しますか", wItem.Memo, "はい", "いいえ"))
-                {
-                    todoItemDatabase.DeleteItem(wItem);
-                    listView.ItemsSource = todoItemDatabase.GetItems();
-                }
+                await Navigation.PushAsync(new EditPage(wItem));
+                //if (await DisplayAlert("削除しますか", wItem.Memo, "はい", "いいえ"))
+                //{
+                //    todoItemDatabase.DeleteItem(wItem);
+                //    listView.ItemsSource = todoItemDatabase.GetItems();
+                //}
             };
         }
 
