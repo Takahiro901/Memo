@@ -14,24 +14,19 @@ namespace Memo
         {
             InitializeComponent();
 
-            listView.ItemsSource = todoItemDatabase.GetItems();
+            //listView.ItemsSource = await todoItemDatabase.GetItemsAsync();
 
             listView.ItemTapped += async (s, a) =>
             {
                 var wItem = (TodoItem)a.Item;
                 await Navigation.PushAsync(new EditPage(wItem));
-                //if (await DisplayAlert("削除しますか", wItem.Memo, "はい", "いいえ"))
-                //{
-                //    todoItemDatabase.DeleteItem(wItem);
-                //    listView.ItemsSource = todoItemDatabase.GetItems();
-                //}
             };
         }
 
-        protected override void OnAppearing()
+        protected override async void OnAppearing()
         {
             base.OnAppearing();
-            listView.ItemsSource = todoItemDatabase.GetItems();
+            listView.ItemsSource = await todoItemDatabase.GetItemsAsync();
         }
 
         async void Add_clicked(object sender, EventArgs e)

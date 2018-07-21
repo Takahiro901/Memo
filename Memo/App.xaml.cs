@@ -1,6 +1,10 @@
-﻿using Memo.Database;
+﻿using System;
+using System.IO;
+using Memo.Database;
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
+[assembly:XamlCompilation(XamlCompilationOptions.Compile)]
 namespace Memo
 {
     public partial class App : Application

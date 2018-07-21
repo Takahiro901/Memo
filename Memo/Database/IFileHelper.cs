@@ -5,6 +5,7 @@ namespace Memo.Database
 {
     public interface IFileHelper
     {
-        SQLiteConnection GetConnection();
+        //SQLiteConnection GetConnection();
+        string GetPath();
     }
 }

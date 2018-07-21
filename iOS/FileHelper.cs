@@ -11,6 +11,20 @@ namespace Memo.iOS
 {
     public class FileHelper : IFileHelper
     {
+        public string GetPath()
+        {
+            var path = Path.Combine(
+                Environment.GetFolderPath(Environment.SpecialFolder.Personal),
+            "..",
+            "Library",
+                "Databases");
+            if(!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+            return Path.Combine(path, "database.db3");
+        }
+        /*
         public SQLiteConnection GetConnection()
         {
             string docFolder = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
@@ -18,5 +32,6 @@ namespace Memo.iOS
             return new SQLiteConnection(libFolder);
 
         }
+        */
     }
 }

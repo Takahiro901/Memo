@@ -22,7 +22,7 @@ namespace Memo
                 Memo = eMemo.Text,
                 InsertDate = DateTime.Now
             };
-            todoItemDatabase.InsertItem(item);
+            await todoItemDatabase.InsertItemsAsync(item);
             await Navigation.PopAsync();
         }
 
