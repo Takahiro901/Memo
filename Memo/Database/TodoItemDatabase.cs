@@ -36,47 +36,6 @@ namespace Memo.Database
             return database.DeleteAsync(item);
         }
 
-        /*
-        static readonly object wObject = new object();
-        readonly SQLiteConnection wTodoItemDatabase; 
-
-        public TodoItemDatabase()
-        {
-            wTodoItemDatabase = DependencyService.Get<IFileHelper>().GetConnection();
-            wTodoItemDatabase.CreateTable<TodoItem>();
-        }
-
-        public IEnumerable<TodoItem> GetItems()
-        {
-            lock (wObject)
-            {
-                return wTodoItemDatabase.Table<TodoItem>();
-            }
-        }
-
-        public void InsertItem(TodoItem item)
-        {
-            lock(wObject)
-            {
-                wTodoItemDatabase.Insert(item);
-            }
-        }
-
-        public void UpdateItem(TodoItem item)
-        {
-            lock (wObject)
-            {
-                wTodoItemDatabase.Update(item);
-            }
-        }
-
-        public void DeleteItem(TodoItem item)
-        {
-            lock(wObject)
-            {
-                wTodoItemDatabase.Delete(item);
-            }
-        }
-        */
+        
     }
 }

@@ -24,14 +24,5 @@ namespace Memo.iOS
             }
             return Path.Combine(path, "database.db3");
         }
-        /*
-        public SQLiteConnection GetConnection()
-        {
-            string docFolder = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-            string libFolder = Path.Combine(docFolder, "..", "Library", "Databases");
-            return new SQLiteConnection(libFolder);
-
-        }
-        */
     }
 }
